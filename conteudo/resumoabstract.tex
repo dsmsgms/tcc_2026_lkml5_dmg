@@ -1,0 +1,23 @@
+%!TeX root=../tese.tex
+%("dica" para o editor de texto: este arquivo é parte de um documento maior)
+% para saber mais: https://tex.stackexchange.com/q/78101
+
+% As palavras-chave são obrigatórias, em português e em inglês, e devem ser
+% definidas antes do resumo/abstract. Acrescente quantas forem necessárias.
+\palavraschave{Linux kernel,listas de email,patches, commit git}
+
+\keywords{Linux kernel,mailing lists,patches,git commits}
+
+% O resumo é obrigatório, em português e inglês. Estes comandos também
+% geram automaticamente a referência para o próprio documento, conforme
+% as normas sugeridas da USP.
+\resumo{
+}
+
+\abstract{
+The Linux kernel relies on a decentralized, subsystem-based development model in which contributors submit code changes as patches to public mailing lists. Before a patch reaches the official upstream mainline Git repository, it typically undergoes peer review, multiple revisions, and maintainer-level adjustments---including rebasing, editing, and the addition of attribution trailers such as \textit{Reviewed-by} and \textit{Signed-off-by}. Because these interactions occur across hundreds of mailing lists and intermediate maintainer trees, the resulting mainline Git commits rarely retain an explicit link to the original emails and discussion threads from which they emerged. This gap limits empirical studies that aim to connect code evolution with the human review and decision-making processes behind it.
+
+Building upon the LKML5Ws dataset---which structures over 20 million emails from 345 Linux kernel mailing lists archived in Kernel Lore---this work investigates how to systematically link email patches to their corresponding commits in the mainline Git tree without relying on intermediate maintainer repositories. We propose a contribution model that treats the upstream commit as the final outcome while accounting for code modifications between submission and integration, as well as the possibility of multiple email sources contributing to a single commit. Using metadata extracted from both Git commits and systematically identified patch emails, we design heuristics to infer whether a patch was integrated and to reconstruct commit provenance.
+
+To evaluate the effectiveness of our approach, we manually review the inferred email provenance for a sample of mainline commits and apply logistic regression to assess the accuracy of the matching process. By establishing a reliable bridge between the mainline Git history and public mailing list archives, this work enables deeper investigation into the Linux kernel development process, such as analyzing review threads, patch lifecycles, and maintainer workload, while unlocking broader analytical uses of the LKML5Ws dataset.
+}

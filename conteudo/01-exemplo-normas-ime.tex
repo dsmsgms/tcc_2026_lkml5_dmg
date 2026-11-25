@@ -1,0 +1,26 @@
+%!TeX root=../tese.tex
+%("dica" para o editor de texto: este arquivo é parte de um documento maior)
+% para saber mais: https://tex.stackexchange.com/q/78101
+
+\chapter{Objetivos}
+
+\section{Objetivo geral}
+
+Desenvolver e avaliar um método reprodutível de ligação entre patches enviados às listas de discussão do Kernel Linux e \textit{commits} incorporados à árvore principal, com níveis de confiança estatisticamente interpretáveis.
+
+\section{Objetivos específicos}
+
+\begin{enumerate}
+	\item Compreender o dataset LKML5Ws.
+	\item Extrair a informação dos \textit{commits} do repositório oficial do Linux.
+	\item Processar a informação dos \textit{commits} para produzir o \textit{dataset commits} com os campos requeridos.
+	\item Normalizar campos textuais, temporais e estruturados.
+	\item Desenvolver regras de bloqueio e elegibilidade para reduzir o espaço de comparação.
+	\item Extrair uma amostra aleatória do \textit{dataset commits} e associar com registros do dataset LKML5Ws fazendo a junção pelo assunto e usando as regras de eligibilidade e bloqueio.
+	\item Coletar em kernel.lore.org o e-mail sem anonimização dos registros do \textit{dataset} LKML5Ws selecionados.
+	\item Construir uma amostra de verdade de referência por meio da análise de dois revisores.
+	\item Treinar um modelo probabilístico ou supervisionado..
+	\item Calibrar as probabilidades de correspondência.
+	\item Analisar erros, casos ambíguos e relações muitos-para-muitos.
+	\item Produzir uma tabela final de correspondências, evidências e confiança.	
+\end{enumerate}

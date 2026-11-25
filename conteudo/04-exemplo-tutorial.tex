@@ -1,0 +1,890 @@
+%!TeX root=../tese.tex
+%("dica" para o editor de texto: este arquivo é parte de um documento maior)
+% para saber mais: https://tex.stackexchange.com/q/78101
+
+% Vamos definir alguns comandos auxiliares para facilitar.
+
+% "textbackslash" é muito comprido.
+\newcommand{\sla}{\textbackslash}
+
+% Vamos escrever comandos (como "make" ou "itemize") com formatação especial.
+\newcommand{\cmd}[1]{\textsf{#1}}
+
+% Idem para packages; aqui estamos usando a mesma formatação de \cmd,
+% mas poderíamos escolher outra.
+\newcommand{\pkg}[1]{\textsf{#1}}
+
+% A maioria dos comandos LaTeX começa com "\"; vamos criar um
+% comando que já coloca essa barra e formata com "\cmd".
+\newcommand{\ltxcmd}[1]{\cmd{\sla{}#1}}
+
+\chapter{Resultados e Discussão}
+\label{chap:resultados}
+
+\section{Concordância Inter avaliadores na classificação da relação entre e-mails e commits}
+A classificação independente abrangeu 1.292 pares formados por
+\textit{e-mails} de submissão de patches e seus possíveis \textit{commits}
+correspondentes. Foram excluídos os \textit{commits} de merge, pois eles
+reúnem múltiplos \textit{commits} em uma única integração e poderiam
+comprometer a unidade de análise. Nesse conjunto, os avaliadores
+concordaram em 1.234 casos, equivalentes a 95,51\% das avaliações
+válidas, e divergiram em 58 casos (4,49\%). A Tabela 1 sintetiza esses
+indicadores globais de concordância.
+
+\textbf{Tabela 1 -- Indicadores globais de concordância Inter
+	avaliadores}	
+\begin{longtable}[]{@{}
+			>{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5659}}
+			>{\centering\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.3144}}@{}}
+		\toprule\noalign{}
+		\begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Indicador}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+			\textbf{Resultado}
+		\end{minipage} \\
+		\midrule\noalign{}
+		\endhead
+		\bottomrule\noalign{}
+		\endlastfoot
+		Avaliações válidas & 1.292 \\
+		Concordâncias & 1.234 \\
+		Desacordos & 58 \\
+		Concordância percentual & 95,51\% \\
+		Kappa de Cohen & 0,8219 \\
+\end{longtable}
+
+Embora a concordância percentual observada tenha sido elevada, essa
+medida não desconta o acordo esperado ao acaso. Por esse motivo, a
+análise foi complementada pelo \textit{kappa} de Cohen. O valor $\kappa$ = 0,8219
+situa-se, segundo a classificação convencional de \cite{landis1977measurement},
+no intervalo de 0,81 a 1,00, usualmente denominado concordância ``quase
+perfeita''. Assim, a combinação entre 95,51\% de acordo observado e
+\textit{kappa} superior a 0,80 fornece evidência de elevada
+reprodutibilidade do procedimento manual.
+%\newpage
+\textbf{Tabela 2 -- Matriz de concordância entre os avaliadores}
+\begin{longtable}[]{@{}
+			>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3668}}
+			>{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2315}}
+			>{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2315}}
+			>{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1703}}@{}}
+		\toprule\noalign{}
+		\begin{minipage}[b]{\linewidth}\centering
+			\textbf{Classificação do Avaliador 1}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+			\textbf{Avaliador 2: Não}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+			\textbf{Avaliador 2: Sim}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+			\textbf{Total}
+		\end{minipage} \\
+		\midrule\noalign{}
+		\endhead
+		\bottomrule\noalign{}
+		\endlastfoot
+		Avaliador 1: Não & 162 & 21 & 183 \\
+		Avaliador 1: Sim & 37 & 1.072 & 1.109 \\
+		Total & 199 & 1.093 & 1.292 \\
+\end{longtable}
+
+A Tabela 2 detalha a composição desse acordo. A diagonal principal
+concentra os 1.234 julgamentos concordantes: 162 casos classificados
+como ``Não'' por ambos os avaliadores e 1.072 classificados como
+``Sim''. Entre os 58 desacordos, o Avaliador 1 registrou ``Sim'' e o
+Avaliador 2, ``Não'' em 37 casos; nos 21 restantes, ocorreu o padrão
+inverso. Consequentemente, o Avaliador 1 atribuiu ``Sim'' em 85,84\% dos
+casos, ante 84,60\% do Avaliador 2. A diferença marginal, de apenas 1,24
+ponto percentual, sugere leve maior propensão do Avaliador 1 à categoria
+``Sim'', mas sua pequena magnitude deve ser interpretada em conjunto com
+a elevada concordância global.
+
+\textbf{Tabela 3 -- Distribuição das categorias por avaliador}
+\begin{longtable}[]{@{}
+		>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3668}}
+		>{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2315}}
+		>{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2315}}
+		>{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1703}}@{}}
+	% conteúdo da tabela
+	\toprule\noalign{}
+	\begin{minipage}[b]{\linewidth}\centering
+		\textbf{Classificação do Avaliador 1}
+	\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+		\textbf{Avaliador 2: Não}
+	\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+		\textbf{Avaliador 2: Sim}
+	\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+		\textbf{Total}
+	\end{minipage} \\
+	\midrule\noalign{}
+	\endhead
+	\bottomrule\noalign{}
+	\endlastfoot
+	Avaliador 1: Não & 162 & 21 & 183 \\
+	Avaliador 1: Sim & 37 & 1.072 & 1.109 \\
+	Total & 199 & 1.093 & 1.292 \\
+	
+\end{longtable}
+
+Como evidencia a Tabela 3, a predominância da categoria ``Sim'' foi
+consistente entre os avaliadores. Esse desequilíbrio merece atenção
+porque a concordância percentual pode ser inflada quando uma categoria é
+muito frequente. O \textit{kappa} de Cohen atenua parcialmente esse efeito
+ao considerar o acordo esperado a partir das distribuições marginais.
+Ainda assim, a prevalência precisa permanecer explícita na
+interpretação. Por essa razão, a Tabela 4 apresenta separadamente os
+acordos específicos por categoria.
+
+\textbf{Tabela 4 -- Concordância específica por categoria}
+\begin{longtable}[]{@{}
+			>{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1645}}
+			>{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2080}}
+			>{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2238}}
+			>{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2238}}
+			>{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1799}}@{}}
+		\toprule\noalign{}
+		\begin{minipage}[b]{\linewidth}\centering
+			\textbf{Categoria}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+			\textbf{Concordâncias}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+			\textbf{Atribuições do Avaliador 1}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+			\textbf{Atribuições do Avaliador 2}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+			\textbf{Acordo específico}
+		\end{minipage} \\
+		\midrule\noalign{}
+		\endhead
+		\bottomrule\noalign{}
+		\endlastfoot
+		Não & 162 & 183 & 199 & 84,82\% \\
+		Sim & 1.072 & 1.109 & 1.093 & 97,37\% \\
+\end{longtable}
+
+A concordância específica foi maior para ``Sim'' (97,37\%) do que para
+``Não'' (84,82\%). Portanto, os avaliadores reconheceram com mais
+uniformidade os casos em que o e-mail estava associado ao \textit{commit},
+enquanto a categoria menos frequente concentrou proporcionalmente mais
+incerteza. Embora o acordo de 84,82\% para ``Não'' ainda seja elevado, a
+diferença de 12,55 pontos percentuais entre as categorias recomenda
+examinar os 58 desacordos, sobretudo em relação a critérios
+potencialmente ambíguos, como alterações no assunto, ausência de índices
+do \textit{diff}, divergências de autoria e intervalos temporais
+limítrofes.
+
+Em conjunto, esses resultados indicam que o protocolo de classificação
+independente foi aplicado de modo consistente. A elevada concordância
+global, o \textit{kappa} de 0,8219 e os acordos específicos superiores a
+84\% sustentam o uso da classificação manual como referência
+suficientemente estável para a etapa de modelagem. Entretanto,
+concordância não equivale a validade, pois dois avaliadores podem
+aplicar de forma semelhante um critério inadequado. Para reduzir esse
+risco, a resolução consensual dos desacordos incluiu nova leitura do
+texto integral do e-mail e das informações do \textit{commit}, com atenção
+especial às datas, aos autores, ao código e aos arquivos alterados.
+
+\section{Modelo logístico inicial e seleção das variáveis preditoras}
+O modelo logístico inicial foi ajustado com 1.292 observações e oito
+preditores. O ajuste convergiu, apresentou teste da razão de
+verossimilhanças globalmente significativo (p \textless{} 0,001) e
+pseudo-R² de McFadden igual a 0,8228. Esses resultados indicam que o
+conjunto inicial de preditores acrescentou informação substancial em
+comparação com o modelo que continha apenas o intercepto. Contudo, um
+bom ajuste global não assegura contribuição independente de cada
+coeficiente, sobretudo quando há forte associação entre as variáveis
+explicativas. A Tabela 5 resume o ajuste inicial.
+
+\textbf{Tabela 5 -- Síntese do ajuste logístico inicial}
+\begin{longtable}[]{@{}
+			>{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5039}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.2975}}@{}}
+		\toprule\noalign{}
+		\begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Indicador}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Resultado}
+		\end{minipage} \\
+		\midrule\noalign{}
+		\endhead
+		\bottomrule\noalign{}
+		\endlastfoot
+		Observações & 1.292 \\
+		Registros removidos por ausência & 0 \\
+		Preditores & 8 \\
+		Log-verossimilhança & -92,452 \\
+		Pseudo-R² de McFadden & 0,8228 \\
+		p do teste da razão de verossimilhanças & \textless{} 0,001 \\
+		Convergência & Sim \\
+\end{longtable}
+
+
+Para investigar possíveis sobreposições entre os preditores, examinou-se
+primeiro a matriz de correlação. Adotou-se, como critério descritivo,
+correlação absoluta igual ou superior a 0,80. Nove pares atenderam a
+esse critério, com valores entre 0,8225 e 0,9716. A associação mais
+forte ocorreu entre CoincideAutor e Intervalo (r = 0,9716), seguida das
+relações entre CoincideAutor e CossenoDiffs (r = 0,9417), Intervalo e
+CossenoDiffs (r = 0,9303) e CossenoDiffs e SimilaridadeDiffs (r =
+0,9284), conforme a Tabela 6.
+
+\newpage
+
+\textbf{Tabela 6 -- Pares de preditores com correlação absoluta igual ou
+	superior a 0,80}
+\begin{longtable}[]{@{}
+			>{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3357}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3368}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3274}}@{}}
+		\toprule\noalign{}
+		\begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Variável 1}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Variável 2}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Correlação}
+		\end{minipage} \\
+		\midrule\noalign{}
+		\endhead
+		\bottomrule\noalign{}
+		\endlastfoot
+		CoincideAutor & Intervalo & 0,9716 \\
+		CoincideAutor & CossenoDiffs & 0,9417 \\
+		Intervalo & CossenoDiffs & 0,9303 \\
+		CossenoDiffs & SimilaridadeDiffs & 0,9284 \\
+		CoincideAssunto & CoincideAutor & 0,8679 \\
+		CoincideAssunto & CossenoDiffs & 0,8649 \\
+		CoincideAssunto & Intervalo & 0,8616 \\
+		CoincideAutor & SimilaridadeDiffs & 0,8412 \\
+		Intervalo & SimilaridadeDiffs & 0,8225 \\
+\end{longtable}
+
+Como as correlações bivariadas não resumem toda a dependência conjunta
+entre os preditores, o diagnóstico foi complementado pelo fator de
+inflação da variância (VIF). Essa medida quantifica quanto a variância
+estimada de um coeficiente é ampliada pela associação da variável com os
+demais preditores. O VIF foi empregado como diagnóstico contextual, e
+não como regra automática de exclusão. \cite{obrien2007caution}  O'Brien (2007) adverte que
+limiares usuais, como VIF igual a 10, não devem determinar isoladamente
+a eliminação de variáveis; a decisão também deve considerar o objetivo
+do modelo, a redundância substantiva, a precisão dos coeficientes e a
+estabilidade do ajuste.
+
+\textbf{Tabela 7 -- Fator de inflação da variância no modelo inicial}
+\begin{longtable}[]{@{}
+			>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2939}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1467}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1891}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2679}}@{}}
+		\toprule\noalign{}
+		\begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Variável}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{VIF}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Tolerância}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Diagnóstico inicial}
+		\end{minipage} \\
+		\midrule\noalign{}
+		\endhead
+		\bottomrule\noalign{}
+		\endlastfoot
+		CossenoDiffs & 23,0786 & 0,0433 & Elevada \\
+		CoincideAutor & 22,7139 & 0,0440 & Elevada \\
+		Intervalo & 19,7402 & 0,0507 & Elevada \\
+		SimilaridadeDiffs & 8,1359 & 0,1229 & Moderada \\
+		CoincideAssunto & 4,6628 & 0,2145 & Limítrofe \\
+		CoincideIndices & 1,2013 & 0,8324 & Baixa \\
+		CoincideLink & 1,1632 & 0,8597 & Baixa \\
+		Delta & 1,0863 & 0,9206 & Baixa \\
+\end{longtable}
+
+
+Os resultados da Tabela 7 confirmam multicolinearidade importante no
+bloco formado por CossenoDiffs, CoincideAutor, Intervalo,
+SimilaridadeDiffs e CoincideAssunto. Os três primeiros apresentaram VIFs
+de 23,0786, 22,7139 e 19,7402, respectivamente, acompanhados de
+tolerâncias próximas de 0,05. SimilaridadeDiffs apresentou VIF de
+8,1359, enquanto CoincideAssunto alcançou 4,6628. Conforme discutem \cite{dormann2013collinearity}, correlações elevadas entre preditores podem
+inflar a variância dos parâmetros, dificultar a identificação dos
+efeitos relevantes e comprometer a transferência do modelo quando a
+estrutura de correlação se altera. Diante desse diagnóstico, os
+coeficientes do modelo inicial, apresentados na Tabela 8, foram
+examinados em conjunto com os indicadores de colinearidade.
+
+\newpage
+
+\textbf{Tabela 8 -- Coeficientes do modelo inicial relacionados à
+	decisão de seleção}
+
+\begin{longtable}[]{@{}
+			>{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2150}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2040}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1961}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1925}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1924}}@{}}
+		\toprule\noalign{}
+		\begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Variável}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Coeficiente}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Erro-padrão}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{p-value}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{IC 95\%}
+		\end{minipage} \\
+		\midrule\noalign{}
+		\endhead
+		\bottomrule\noalign{}
+		\endlastfoot
+		CoincideLink & 3,5658 & 1,241 & 0,004 & 1,133 a 5,999 \\
+		CoincideAssunto & -0,0549 & 1,337 & \textit{\textbf{0,967}} & -2,676 a
+		2,566 \\
+		CoincideAutor & 4,6911 & 1,597 & 0,003 & 1,560 a 7,822 \\
+		Intervalo & 2,1723 & 1,377 & \textit{\textbf{0,115}} & -0,526 a 4,870 \\
+		CoincideIndices & 1,2247 & 0,528 & 0,020 & 0,190 a 2,260 \\
+		Delta & -0,0488 & 0,157 & 0,756 & -0,356 a 0,259 \\
+		CossenoDiffs & 0,2945 & 0,566 & \textit{\textbf{0,603}} & -0,815 a
+		1,404 \\
+		SimilaridadeDiffs & 1,2154 & 0,843 & 0,149 & -0,436 a 2,867 \\
+\end{longtable}
+
+
+A seleção das variáveis decorreu, portanto, da análise conjunta das
+Tabelas 7 e 8. CoincideAssunto foi retirada porque sua informação estava
+fortemente sobreposta à fornecida por CoincideAutor, CossenoDiffs e
+Intervalo, com correlações de 0,8679, 0,8649 e 0,8616. Embora o VIF de
+4,6628 não caracterizasse, isoladamente, multicolinearidade grave, seu
+coeficiente foi praticamente nulo (-0,0549), o p-valor foi 0,967 e o
+intervalo de confiança foi amplo (-2,676 a 2,566). Em conjunto, esses
+elementos indicaram ausência de contribuição incremental identificável
+no modelo completo.
+
+CossenoDiffs, por sua vez, foi removida porque apresentou o maior VIF do
+modelo (23,0786), além de forte correlação com SimilaridadeDiffs,
+CoincideAutor, Intervalo e CoincideAssunto. Seu coeficiente também não
+diferiu estatisticamente de zero (p = 0,603). Como CossenoDiffs e
+SimilaridadeDiffs representam medidas de proximidade entre os conteúdos
+comparados, a manutenção simultânea aumentava a redundância, ampliava o
+erro-padrão e dificultava a atribuição de efeito independente. Optou-se,
+assim, por preservar SimilaridadeDiffs como medida contínua de
+similaridade textual e excluir CossenoDiffs.
+
+Intervalo também foi excluída. A variável apresentou VIF de 19,7402 e
+correlações elevadas com CoincideAutor, CossenoDiffs, CoincideAssunto e
+SimilaridadeDiffs. Apesar do coeficiente positivo, o intervalo de
+confiança incluía zero e o p-valor foi 0,115. Sua retirada reduziu a
+sobreposição entre indicadores sem eliminar do modelo as dimensões de
+autoria e similaridade que se pretendia representar.
+
+É importante ressaltar que a seleção não se baseou apenas nos p-valores
+nem em um limiar rígido de VIF. Foram considerados conjuntamente as
+correlações cruzadas, a tolerância, a redundância conceitual, a
+amplitude dos intervalos de confiança e o objetivo de obter um modelo
+parcimonioso e interpretável. Essa estratégia evita decisões mecânicas
+baseadas exclusivamente em regras de corte e reduz o risco de atribuir
+significado substantivo a coeficientes instáveis produzidos pelo
+compartilhamento de informação entre preditores correlacionados. A
+Tabela 9 consolida as decisões adotadas.
+
+\textbf{Tabela 9 -- Decisão sobre as variáveis do modelo inicial}
+\begin{longtable}[]{@{}
+			>{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2349}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1970}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.5681}}@{}}
+		\toprule\noalign{}
+		\begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Variável}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Decisão}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Fundamento principal}
+		\end{minipage} \\
+		\midrule\noalign{}
+		\endhead
+		\bottomrule\noalign{}
+		\endlastfoot
+		CoincideLink & Mantida & Baixo VIF; associação independente no modelo
+		inicial \\
+		CoincideAssunto & Retirada & Redundância cruzada; coeficiente nulo; p =
+		0,967 \\
+		CoincideAutor & Mantida provisoriamente & Relevância substantiva e p =
+		0,003; VIF deve ser recalculado \\
+		Intervalo & Retirada & VIF elevado e sobreposição com autoria e
+		similaridade \\
+		CoincideIndices & Mantida & Baixo VIF e p = 0,020 \\
+		Delta & Mantida para avaliação final & Baixo VIF; contribuição preditiva
+		deve ser verificada fora da amostra \\
+		CossenoDiffs & Retirada & Maior VIF e redundância com
+		SimilaridadeDiffs \\
+		SimilaridadeDiffs & Mantida & Preserva medida contínua de similaridade
+		textual \\
+\end{longtable}
+
+Após as exclusões, o conjunto reduzido foi formado por CoincideLink,
+CoincideAutor, CoincideIndices, Delta e SimilaridadeDiffs. A manutenção
+de CoincideAutor deve ser descrita como provisória até que o VIF seja
+recalculado no modelo reduzido, pois seu valor inicial de 22,7139 também
+foi elevado. O VIF depende das demais variáveis incluídas e pode
+diminuir substancialmente após a retirada de Intervalo, CossenoDiffs e
+CoincideAssunto. A versão final do artigo deve apresentar os VIFs
+recalculados e comparar o modelo inicial e o reduzido quanto à
+estabilidade dos coeficientes, discriminação e calibração em dados não
+utilizados no ajuste.
+
+Em síntese, o modelo inicial apresentou ajuste global elevado, mas
+continha preditores que descreviam aspectos parcialmente coincidentes da
+correspondência entre e-mails e \textit{commits}. A retirada de
+CoincideAssunto, CossenoDiffs e Intervalo buscou reduzir a inflação da
+variância, evitar duplicação de informação e favorecer uma interpretação
+mais estável dos efeitos mantidos. A escolha do modelo final deve ser
+confirmada pelo diagnóstico de multicolinearidade após a redução e pelo
+desempenho fora da amostra, especialmente pelas métricas de
+discriminação e calibração probabilística.
+
+\section{Particionamento da amostra, diagnóstico do modelo reduzido e ajuste no treinamento}
+A amostra analítica de 1.292 pares de e-mail e \textit{commit} foi dividida de forma agrupada, de modo que observações pertencentes ao mesmo agrupamento lógico (\textit{commit}) não fossem distribuídas entre treinamento, validação e teste. O conjunto de treinamento reuniu 902 pares (69,81\%), a validação 194 pares (15,02\%) e o teste 196 pares (15,17\%). As proporções ficaram próximas da divisão planejada de 70\%, 15\% e 15\%, com pequenas diferenças esperadas quando a alocação é realizada por grupos, e não por registros individuais. A Tabela 10 mostra o particionamento da amostra.
+
+\textbf{Tabela 10 -- Divisão agrupada da amostra}
+\begin{longtable}[]{@{}
+			>{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1600}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.0909}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1673}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1409}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1444}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1394}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1571}}@{}}
+		\toprule\noalign{}
+		\begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Partição}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Pares}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{\% dos pares}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textit{\textbf{Commits}}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Negativos}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Positivos}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Prevalência positiva}
+		\end{minipage} \\
+		\midrule\noalign{}
+		\endhead
+		\bottomrule\noalign{}
+		\endlastfoot
+		Treinamento & 902 & 69,81\% & 898 & 128 & 774 & 85,81\% \\
+		Validação & 194 & 15,02\% & 192 & 24 & 170 & 87,63\% \\
+		Teste & 196 & 15,17\% & 193 & 28 & 168 & 85,71\% \\
+		Total & 1.292 & 100,00\% & --- & 180 & 1.112 & 86,07\% \\
+\end{longtable}
+
+A prevalência da classe positiva foi semelhante nas três partições: 85,81\% no treinamento, 87,63\% na validação e 85,71\% no teste. A amplitude entre as prevalências extremas foi de apenas 1,92 ponto percentual, indicando que a divisão agrupada preservou adequadamente a composição da variável de resposta. Ao mesmo tempo, a prevalência elevada evidencia desbalanceamento de classes: aproximadamente seis em cada sete pares foram classificados como integrados. Por essa razão, a avaliação posterior não deve se apoiar apenas na acurácia; métricas como precisão, revocação, área sob a curva precisão-revocação, \textit{Brier Score} e \textit{log loss} são mais informativas para verificar discriminação e qualidade probabilística.
+
+\subsection{\texorpdfstring{Multicolinearidade no conjunto de
+			treinamento}{Multicolinearidade no conjunto de treinamento}}\label{multicolinearidade-no-conjunto-de-treinamento}
+
+Após a retirada dos preditores CoincideAssunto, Intervalo e CossenoDiffs, o diagnóstico de multicolinearidade foi repetido exclusivamente no conjunto de treinamento. A maior correlação remanescente ocorreu entre CoincideAutor e SimilaridadeDiffs (r=0,8744). As demais correlações foram inferiores a 0,40 em módulo, com destaque para CoincideAutor e CoincideIndices (r=0,3704), CoincideIndices e SimilaridadeDiffs (r = 0,3397) e CoincideLink e CoincideAutor (r=0,3185). A Tabela 11 apresenta a matriz de correlação das variáveis independentes do modelo reduzido.
+
+\textbf{Tabela 11 -- Matriz de correlação dos preditores no conjunto de treinamento}
+\begin{longtable}[]{@{}
+			>{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1830}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1622}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1695}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1768}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1169}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1917}}@{}}
+		\toprule\noalign{}
+		\begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Variável}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{CoincideLink}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{CoincideAutor}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{CoincideIndices}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Delta}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{SimilaridadeDiffs}
+		\end{minipage} \\
+		\midrule\noalign{}
+		\endhead
+		\bottomrule\noalign{}
+		\endlastfoot
+		CoincideLink & \textit{1,0000} & 0,3185 & 0,2181 & 0,0546 & 0,3063 \\
+		CoincideAutor & 0,3185 & \textit{1,0000} & 0,3704 & 0,2055 & 0,8744 \\
+		CoincideIndices & 0,2181 & 0,3704 & \textit{1,0000} & -0,0772 & 0,3397 \\
+		Delta & 0,0546 & 0,2055 & -0,0772 & \textit{1,0000} & 0,1819 \\
+		SimilaridadeDiffs & 0,3063 & 0,8744 & 0,3397 & 0,1819 & \textit{1,0000} \\
+\end{longtable}
+
+Embora a correlação de 0,8744 ainda indique forte associação bivariada entre CoincideAutor e SimilaridadeDiffs, os respectivos VIFs diminuíram para 4,4662 e 4,2686 como mostra os dados na Tabela 12. A redução é expressiva em comparação com o modelo inicial, no qual CoincideAutor apresentava VIF de 22,7139 e SimilaridadeDiffs VIF de 8,1359. Os demais preditores apresentaram VIFs próximos de 1. Esse padrão indica que a retirada das variáveis redundantes reduziu substancialmente a inflação da variância e permitiu manter, no modelo, dimensões conceitualmente distintas de autoria e similaridade textual.
+
+\textbf{Tabela 12 -- Fator de inflação da variância no conjunto de
+	treinamento}
+\begin{longtable}[]{@{}
+			>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2196}}
+			>{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1258}}
+			>{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1572}}
+			>{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.4974}}@{}}
+		\toprule\noalign{}
+		\begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Variável}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+			\textbf{VIF}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+			\textbf{Tolerância}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+			\textbf{Interpretação}
+		\end{minipage} \\
+		\midrule\noalign{}
+		\endhead
+		\bottomrule\noalign{}
+		\endlastfoot
+		CoincideAutor & 4,4662 & 0,2239 & Atenção, mas abaixo do limite
+		operacional de 5 \\
+		SimilaridadeDiffs & 4,2686 & 0,2343 & Atenção, mas abaixo do limite
+		operacional de 5 \\
+		CoincideIndices & 1,2095 & 0,8268 & Baixa multicolinearidade \\
+		CoincideLink & 1,1312 & 0,8840 & Baixa multicolinearidade \\
+		Delta & 1,0748 & 0,9304 & Baixa multicolinearidade \\
+\end{longtable}
+
+Os valores de VIF devem ser interpretados de forma contextual. O'Brien (2007) adverte que regras fixas não justificam, isoladamente, a exclusão de uma variável. Neste estudo, a permanência de CoincideAutor e
+SimilaridadeDiffs é defensável porque ambas representam mecanismos substantivamente distintos, os VIFs ficaram abaixo de 5 no modelo reduzido e os coeficientes passaram a apresentar contribuição estatística no ajuste de treinamento. Ainda assim, a correlação remanescente recomenda cautela ao interpretar cada coeficiente como efeito isolado e reforça a necessidade de avaliar o desempenho em validação e teste.
+
+\subsection{\texorpdfstring{Resultados do modelo logístico no
+			conjunto de
+			treinamento}{Resultados do modelo logístico no conjunto de treinamento}}\label{resultados-do-modelo-loguxedstico-no-conjunto-de-treinamento}
+
+Uma vez concluído o diagnóstico, o modelo logístico-base foi ajustado às 902 observações de treinamento com os cinco preditores selecionados. O ajuste convergiu e o teste da razão de verossimilhanças foi globalmente
+significativo (p \textless{} 0,001), indicando desempenho superior ao modelo com apenas o intercepto. O pseudo-R² de McFadden foi 0,8265 e a log-verossimilhança, -63,910. Embora o pseudo-R² elevado indique forte capacidade explicativa no treinamento, ele não representa proporção de variância explicada no mesmo sentido do R² da regressão linear. A generalização, portanto, depende dos resultados de validação e teste. As Tabelas 13 e 14 resumem o ajuste e os coeficientes.
+
+\textbf{Tabela 13 -- Ajuste do modelo logístico-base no treinamento}
+\begin{longtable}[]{@{}
+			>{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5035}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.2821}}@{}}
+		\toprule\noalign{}
+		\begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Indicador}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Resultado}
+		\end{minipage} \\
+		\midrule\noalign{}
+		\endhead
+		\bottomrule\noalign{}
+		\endlastfoot
+		Observações & 902 \\
+		Preditores & 5 \\
+		Graus de liberdade residuais & 896 \\
+		Log-verossimilhança & -63,910 \\
+		Log-verossimilhança do modelo nulo & -368,390 \\
+		Pseudo-R² de McFadden & 0,8265 \\
+		p do teste da razão de verossimilhanças & \textless{} 0,001 \\
+		Convergência & Sim \\
+\end{longtable}
+
+\newpage
+
+\textbf{Tabela 14 -- Coeficientes do modelo logístico no treinamento}
+\begin{longtable}[]{@{}
+			>{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2134}}
+			>{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1142}}
+			>{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1724}}
+			>{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1407}}
+			>{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.3593}}@{}}
+		\toprule\noalign{}
+		\begin{minipage}[b]{\linewidth}\centering
+			\textbf{Variável}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+			\textbf{$\beta$}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+			\textbf{Erro-padrão}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+			\textbf{p-value}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+			\textbf{IC 95\% de $\beta$}
+		\end{minipage} \\
+		\midrule\noalign{}
+		\endhead
+		\bottomrule\noalign{}
+		\endlastfoot
+		Intercepto & -5,3758 & 1,210 & \textless{} 0,001 & -7,747 a -3,005 \\
+		CoincideLink & 3,1999 & 1,292 & 0,013 & 0,667 a 5,733 \\
+		CoincideAutor & 6,4489 & 1,296 & \textless{} 0,001 & 3,909 a 8,988 \\
+		CoincideIndices & 1,3705 & 0,665 & 0,039 & 0,067 a 2,674 \\
+		Delta & -0,0650 & 0,171 & 0,703 & -0,399 a 0,269 \\
+		SimilaridadeDiffs & 1,9876 & 0,664 & 0,003 & 0,687 a 3,288 \\
+\end{longtable}
+
+
+A análise dos coeficientes reforça a relevância das variáveis mantidas. CoincideAutor apresentou o maior coeficiente positivo entre os preditores binários ($\beta$=6,4489; p \textless{} 0,001), com intervalo de confiança integralmente acima de zero (3,909 a 8,988). Esse resultado fornece evidência forte de associação positiva entre coincidência de autoria e integração, mantidas constantes as demais variáveis.
+
+CoincideLink também apresentou associação positiva e estatisticamente significativa ($\beta$=3,1999; p-value=0,013; IC 95\%: 0,667 a 5,733). Já CoincideIndices apresentou coeficiente positivo de 1,3705 e p = 0,039. Portanto, a coincidência entre os índices do diff acrescentou informação ao modelo após o controle pelos demais preditores, embora a evidência tenha sido menos forte do que a observada para CoincideAutor e SimilaridadeDiffs.
+
+SimilaridadeDiffs permaneceu estatisticamente significativa depois da retirada de CossenoDiffs ($\beta$=1,9876; p-value=0,003). O intervalo de confiança, de 0,687 a 3,288, também permaneceu acima de zero. Assim, valores mais elevados de similaridade textual estiveram associados a maior probabilidade de integração, mantidos constantes os demais preditores.
+
+Em contraste, Delta não apresentou associação estatisticamente identificável no treinamento ($\beta$=-0,0650; p-value=0,703; IC 95\%: -0,399 a 0,269). Como a variável foi padronizada, o coeficiente representa a alteração no preditor linear associada ao aumento de um desvio-padrão em Delta. Sua permanência no modelo final deve, portanto, apoiar-se em justificativa teórica ou em eventual ganho de desempenho nos conjuntos de validação e teste.
+
+Por fim, o intercepto foi negativo e estatisticamente significativo ($\beta$=-5,3758; p-value \textless{} 0,001). Esse parâmetro representa o logaritmo das chances de integração quando todos os preditores assumem valor zero.
+
+\section{Calibração probabilística e desempenho do modelo nos conjuntos de validação e teste}
+
+Após o ajuste no treinamento, o desempenho foi examinado em quatro cenários complementares: probabilidades brutas e calibradas por  Platt (\cite{niculescu2005probabilities}) nos conjuntos de validação e teste. Essa comparação permite separar o ajuste do calibrador de sua capacidade de generalização.
+
+\begin{itemize}
+	\item
+	\textbf{Validação - probabilidade bruta}: desempenho, no conjunto de
+	validação, das probabilidades produzidas diretamente pelo modelo de
+	regressão logística ajustado exclusivamente com os dados de
+	treinamento (modelo-base), antes da calibração.
+	\item
+	\textbf{Validação - Platt}: desempenho, no conjunto de validação, das
+	probabilidades produzidas pelo modelo ajustado no treinamento e
+	posteriormente transformadas pelo calibrador de Platt. Como os
+	parâmetros do calibrador foram estimados nesse mesmo conjunto, esses
+	resultados descrevem seu ajuste, mas não constituem uma avaliação
+	independente da capacidade de generalização da calibração.
+	\item
+	\textbf{Teste - probabilidade bruta}: desempenho, no conjunto de
+	teste, das probabilidades produzidas diretamente pelo modelo de
+	regressão logística ajustado exclusivamente com os dados de
+	treinamento, sem aplicação do calibrador de Platt.
+	\item
+	\textbf{Teste - Platt}: desempenho, no conjunto de teste, das
+	probabilidades inicialmente produzidas pelo modelo de regressão
+	logística ajustado no treinamento e posteriormente transformadas pelo
+	calibrador de Platt estimado no conjunto de validação. Essa avaliação
+	mostra se a recalibração se generaliza para dados que não foram
+	utilizados no ajuste do modelo-base nem do calibrador.
+\end{itemize}
+
+Inicialmente, são mostrados o tamanho e a prevalência dos conjuntos de dados usados em cada avaliação na Tabela 15.
+
+\textbf{Tabela 15 -- Tamanho e prevalência positiva por avaliação}
+\begin{longtable}[]{@{}
+			>{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4250}}
+			>{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1573}}
+			>{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2518}}@{}}
+		\toprule\noalign{}
+		\begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Avaliação}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+			\textbf{n}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+			\textbf{Prevalência}
+		\end{minipage} \\
+		\midrule\noalign{}
+		\endhead
+		\bottomrule\noalign{}
+		\endlastfoot
+		Validação - probabilidade bruta & 194 & 87,63\% \\
+		Validação - Platt & 194 & 87,63\% \\
+		Teste - probabilidade bruta & 196 & 85,71\% \\
+		Teste - Platt & 196 & 85,71\% \\
+\end{longtable}
+
+A prevalência de casos positivos foi semelhante entre validação (87,63\%) e teste (85,71\%), diferença de 1,92 ponto percentual. O predomínio da classe positiva exige cautela com métricas dependentes de limiar e torna especialmente relevante a área sob a curva precisão-revocação. Antes dessas métricas de classificação, porém, é
+necessário examinar a qualidade das probabilidades, sintetizada na Tabela 16.
+
+\textbf{Tabela 16 -- Qualidade das previsões probabilísticas}
+\begin{longtable}[]{@{}
+			>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3768}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2044}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2831}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1358}}@{}}
+		\toprule\noalign{}
+		\begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Avaliação}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Brier Score}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Brier de referência}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Log loss}
+		\end{minipage} \\
+		\midrule\noalign{}
+		\endhead
+		\bottomrule\noalign{}
+		\endlastfoot
+		Validação - probabilidade bruta & 0,0164 & 0,1087 & 0,0759 \\
+		Validação - Platt & 0,0160 & 0,1087 & 0,0756 \\
+		Teste - probabilidade bruta & 0,0222 & 0,1225 & 0,0892 \\
+		Teste - Platt & 0,0212 & 0,1225 & 0,0843 \\
+\end{longtable}
+
+O \textit{Brier Score} corresponde ao erro quadrático médio entre a probabilidade prevista e o resultado observado; quanto menor, melhor. Na validação, o \textit{Platt scaling} reduziu o \textit{Brier Score} de 0,0164 para 0,0160, melhora absoluta de 0,000404, ou aproximadamente 2,47\%. No teste, a redução foi de 0,0222 para 0,0212, melhora absoluta de 0,001001, ou aproximadamente 4,51\%. A melhora no teste indica que a recalibração produziu probabilidades globalmente mais próximas dos resultados observados.
+
+O \textit{Brier} de referência corresponde à previsão que atribui a todos os casos a prevalência positiva do treinamento. Seus valores, 0,1087 na validação e 0,1225 no teste, são muito superiores aos do modelo. No
+teste, o \textit{Brier} calibrado foi cerca de 82,7\% menor que o da referência, evidenciando ganho probabilístico substancial em relação a uma previsão constante.
+
+O \textit{log loss}, ou perda logarítmica, penaliza previsões erradas com maior intensidade quando são feitas com alta confiança. Quanto menor, melhor. Na validação, a redução após Platt foi pequena, de 0,0759 para 0,0756. No teste, caiu de 0,0892 para 0,0843, melhora aproximada de 5,52\%. Esse resultado favorece o \textit{Platt scaling}, pois sugere menor penalização por previsões excessivamente confiantes e incorretas
+fora da amostra. Para complementar essa análise global, a Tabela 17 apresenta métricas específicas de calibração.
+
+\textbf{Tabela 17 -- Métricas de calibração probabilística}
+\begin{longtable}[]{@{}
+			>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3925}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2516}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1729}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1830}}@{}}
+		\toprule\noalign{}
+		\begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Avaliação}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{ECE (10 faixas)}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Intercepto}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Inclinação}
+		\end{minipage} \\
+		\midrule\noalign{}
+		\endhead
+		\bottomrule\noalign{}
+		\endlastfoot
+		Validação - probabilidade bruta & 0,007432 & 0,2930 & 0,9509 \\
+		Validação - Platt & 0,008365 & -0,1201 & 1,0491 \\
+		Teste - probabilidade bruta & 0,014887 & 1,0161 & 0,8180 \\
+		Teste - Platt & 0,018041 & 0,6608 & 0,9024 \\
+\end{longtable}
+
+O ECE de dez faixas resume a diferença média ponderada entre aprobabilidade prevista e a frequência observada nos dez intervalos deprobabilidade. O ideal é zero. Ao contrário do \textit{Brier Score} e do \textit{log loss} o ECE aumentou após a calibração: de 0,007432 para 0,008365 na validação e de 0,014887 para 0,018041 no teste. No teste, o aumento foi de aproximadamente 21,2\%. Esse resultado indica que, para a divisão específica em dez faixas, a correspondência local entre previsões médias e frequências observadas piorou. O ECE deve ser interpretado com cautela porque depende dos limites das faixas e pode ser instável quando há poucas observações em algumas delas.
+
+O intercepto de calibração ideal é zero. Valores positivos indicam que, depois de considerar a inclinação, o evento ocorreu mais frequentemente do que as probabilidades sugeriam; valores negativos apontam o padrão
+inverso. No teste, o \textit{Platt scaling} aproximou o intercepto de zero, de 1,0161 para 0,6608, reduzindo a subestimação global, embora sem eliminá-la.
+
+A inclinação de calibração ideal é um. Valores menores que um indicam probabilidades excessivamente extremas, enquanto valores maiores que um indicam probabilidades pouco extremas. No teste, a inclinação melhorou de 0,8180 para 0,9024, aproximando-se do ideal. Na validação, passou de 0,9509 para 1,0491; ambos os valores estão praticamente à mesma distância de um. Em conjunto, intercepto e inclinação favorecem o \textit{Platt scaling} no teste, apesar da piora do ECE.
+
+No estudo foi usado o limiar de 0,50 na transformação das probabilidades de integração e não integração nas respectivas classes. Probabilidades maiores ou iguais a 0,50 foram classificadas como Sim (patch integrado), e probabilidades menores que 0,50 como Não (patch não integrado). Na Tabela 18 exibe as métricas de classificação do modelo logístico.
+
+\textbf{Tabela 18 -- Precisão, revocação e F1 no limiar de 0,50}
+\begin{longtable}[]{@{}
+			>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.4554}}
+			>{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1959}}
+			>{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1984}}
+			>{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1503}}@{}}
+		\toprule\noalign{}
+		\begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Avaliação}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+			\textbf{Precisão\_050}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+			\textbf{Revocação\_050}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+			\textbf{F1\_050}
+		\end{minipage} \\
+		\midrule\noalign{}
+		\endhead
+		\bottomrule\noalign{}
+		\endlastfoot
+		Validação - probabilidade bruta & 98,27\% & 100,00\% & 99,13\% \\
+		Validação - Platt & 98,27\% & 100,00\% & 99,13\% \\
+		Teste - probabilidade bruta & 98,22\% & 98,81\% & 98,52\% \\
+		Teste - Platt & 98,22\% & 98,81\% & 98,52\% \\
+\end{longtable}
+
+Precisão\_050 é a proporção de classificações positivas que realmente eram positivas. Revocação\_050 é a proporção dos positivos reais identificada pelo modelo. F1\_050 é a média harmônica entre precisão e revocação e resume o equilíbrio entre ambas. No teste, a precisão foi de 98,22\%, a revocação de 98,81\% e a F1 de 98,52\%. 
+
+Os valores não mudaram após Platt, mostrando que nenhuma observação relevante atravessou o limiar de 0,50. Isso não significa que a calibração tenha sido inútil: ela pode melhorar o significado numérico das probabilidades sem alterar as classes nesse limiar.
+
+Além do desempenho em um único limiar, avaliou-se a capacidade do modelo de ordenar os pares efetivamente relacionados acima dos não relacionados. A Tabela 19 mostra a área sob a curva precisão-revocação.
+
+\textbf{Tabela 19 -- Área sob a curva precisão-revocação}
+\begin{longtable}[]{@{}
+			>{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.3768}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.3144}}@{}}
+		\toprule\noalign{}
+		\begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Avaliação}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Área precisão-revocação}
+		\end{minipage} \\
+		\midrule\noalign{}
+		\endhead
+		\bottomrule\noalign{}
+		\endlastfoot
+		Validação - probabilidade bruta & 0,9941 \\
+		Validação - Platt & 0,9941 \\
+		Teste - probabilidade bruta & 0,9958 \\
+		Teste - Platt & 0,9958 \\
+\end{longtable}
+
+A área sob a curva precisão-revocação resume a capacidade de ordenar os casos positivos acima dos negativos ao longo de todos os limiares. Valores próximos de um indicam discriminação excelente. O resultado foi 0,9941 na validação e 0,9958 no teste. A área permaneceu inalterada após Platt porque a calibração aplica uma transformação monotônica às probabilidades: seus valores mudam, mas a ordenação dos registros tende a ser preservada. A Tabela 20 exibe o quadro resumo do processo de calibração.
+
+\textbf{Tabela 20 -- Efeito da calibração de Platt}
+\begin{longtable}[]{@{}
+			>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2482}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2490}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1940}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3088}}@{}}
+		\toprule\noalign{}
+		\begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Critério}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Validação}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Teste}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Interpretação}
+		\end{minipage} \\
+		\midrule\noalign{}
+		\endhead
+		\bottomrule\noalign{}
+		\endlastfoot
+		Brier \textit{Score} & Melhora pequena & Melhora & Favorável ao Platt \\
+		\textit{Log loss} & Melhora mínima & Melhora & Favorável ao Platt \\
+		ECE em 10 faixas & Piora & Piora & Desfavorável ao Platt \\
+		Intercepto & Aproxima de zero & Aproxima de zero & Favorável ao Platt \\
+		Inclinação & Permanece próxima de 1 & Aproxima de 1 & Favorável ao
+		Platt \\
+		Precisão, revocação e F1 em 0,50 & Sem alteração & Sem alteração &
+		Neutro \\
+		Área precisão-revocação & Sem alteração & Sem alteração & Esperado em
+		transformação monotônica \\
+\end{longtable}
+
+Considerando em conjunto, a evidência é moderadamente favorável ao Platt \textit{scaling}. No conjunto de teste, houve melhora do \textit{Brier Score,} do \textit{log loss}, do intercepto e da inclinação de calibração, sem perda na classificação ao limiar de 0,50 nem na discriminação. A principal evidência contrária foi o aumento do ECE de dez faixas. Como \textit{Brier Score} e \textit{log loss} são métricas próprias de avaliação probabilística e consideram cada observação individualmente, a melhora de ambas no teste fornece um argumento mais robusto em favor das probabilidades calibradas.
+
+Vale ressaltar que o modelo já apresentava desempenho muito elevado antes da calibração. Portanto, o ganho de Platt foi incremental, não transformador. Para decisões binárias com limiar 0,50, as versões bruta e calibrada são equivalentes nesta amostra. Para usos em que o valor da probabilidade é relevante, como categorização por níveis de confiança, priorização de revisão manual ou comparação de risco, a versão \textit{Platt} é preferível. A Tabela 21 encerra a seção com um guia de interpretação das métricas utilizadas.
+
+\textbf{Tabela 21 -- Guia de interpretação}
+\begin{longtable}[]{@{}
+			>{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2982}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3724}}
+			>{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3293}}@{}}
+		\toprule\noalign{}
+		\begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Métrica}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{O que avalia}
+		\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+			\textbf{Valor desejável}
+		\end{minipage} \\
+		\midrule\noalign{}
+		\endhead
+		\bottomrule\noalign{}
+		\endlastfoot
+		Prevalência & Proporção observada de positivos & Descritivo; não há
+		valor ideal \\
+		Brier Score & Erro quadrático das probabilidades & Menor \\
+		Brier de referência & Erro de prever a prevalência do treino para todos
+		& Modelo deve ser menor \\
+		ECE de 10 faixas & Diferença entre previsão média e frequência observada
+		por faixa & Próximo de 0 \\
+		Log loss & Penalização probabilística, forte para erros confiantes &
+		Menor \\
+		Intercepto de calibração & Desvio global das probabilidades & Próximo de
+		0 \\
+		Inclinação de calibração & Extremidade ou dispersão das probabilidades &
+		Próximo de 1 \\
+		Precisão\_050 & Correção entre os positivos previstos no corte 0,50 &
+		Maior \\
+		Revocação\_050 & Cobertura dos positivos reais no corte 0,50 & Maior \\
+		F1\_050 & Equilíbrio entre precisão e revocação no corte 0,50 & Maior \\
+		Área precisão-revocação & Ordenação de positivos e negativos em todos os
+		cortes & Próximo de 1 \\
+\end{longtable}
+
